@@ -1,0 +1,60 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+
+  <display-name>Archetype Created Web Application</display-name>
+  <context-param>
+  <param-name>Url</param-name>
+  <param-value>jdbc:mysql://localhost:3306/movie</param-value>
+  </context-param>
+  <context-param>
+  <param-name>Driver</param-name>
+  <param-value>com.mysql.cj.jdbc.Driver</param-value>
+  </context-param>
+  <context-param>
+  <param-name>User</param-name>
+  <param-value>root</param-value>
+  </context-param>
+  <context-param>
+  <param-name>Pass</param-name>
+  <param-value>mysql</param-value>
+  </context-param>
+  <listener>
+  <listener-class>system.DatabaseContextListener</listener-class>
+  </listener>
+  <servlet>
+  	<servlet-name>UserLogin</servlet-name>
+  	<display-name>UserLogin</display-name>
+  	<description></description>
+  	<servlet-class>system.UserLogin</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminHallAdd</servlet-name>
+  	<display-name>AdminHallAdd</display-name>
+  	<description></description>
+  	<servlet-class>system.AdminHallAdd</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>ViewHall</servlet-name>
+  	<display-name>ViewHall</display-name>
+  	<description></description>
+  	<servlet-class>system.ViewHall</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>UserLogin</servlet-name>
+  	<url-pattern>/UserLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminHallAdd</servlet-name>
+  	<url-pattern>/AdminHallAdd</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ViewHall</servlet-name>
+  	<url-pattern>/ViewHall</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  </web-app>

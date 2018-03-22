@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Registration</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" href="stylesheet.css">
+  
+   <script type="text/javascript">
+  function validatePassword(){
+	  var validPassword=true;
+	  var email=document.getElementById("pwd").value;
+	  var message="";
+	  if(email.length<8)
+		  {
+		  message=message+" password should be 8 characters or  more, ";
+		  validPassword=false;
+		  }
+	  var exp1=/[a-zA-z0-9]/;
+	  var exp2=/[@#$&*_]/;
+		  if(exp1.test(email)==false){
+			  message=message+" atleast one lowercase alphabet,one uppercase alphabet, one numeric digit is required, ";
+			  validPassword=false;  
+		  }
+		  if(exp2.test(email)==false) {
+			  message=message+" a special character required";
+			  validPassword=false;
+		  }
+	  message.trim(", ");
+	  alert(message);
+	  return validPassword;
+  }
+  </script>
+</head>
+
+<body>
+<div class="header">
+  <h1>BookMyMovie</h1>
+</div>
+<div class="container">
+  <h2>REGISTER</h2>
+  <form action="registration" method="post">
+  <div class="form-group">
+      <label for="username">User name:</label>
+      <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required="required">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required="required">
+    </div>
+    
+    <div class="form-group">
+      <label for="mobileno">Mobile Number:</label>
+      <input type="number" class="form-control" id="mobileno" placeholder="Enter mobile number" name="mobileno" required="required">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd" required="required">
+    </div>
+    <button type="submit" class="btn btn-default" onclick="return validatePassword()">Submit</button>
+  </form>
+</div>
+
+<div class="footer">
+  <p>Copyright 2018 © salik. All Rights Reserved.
+The content and images used on this site are copyright protected and copyrights vests with the respective owners. The usage of the content and images on this website is intended to promote the works and no endorsement of the artist shall be implied. Unauthorized use is prohibited and punishable by law.</p>
+</div>
+</html>

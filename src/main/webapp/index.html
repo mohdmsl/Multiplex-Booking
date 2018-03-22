@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Booking</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="Request.js" type="text/javascript"></script>
+   <link rel="stylesheet" href="stylesheet.css">
+  <script type="text/javascript">
+function getShows(){
+	var movie=document.getElementById("movies").value;
+	
+	var request = createRequest();
+	request.onreadystatechange = function(){
+		if (this.readyState == 4 && this.status == 200) {
+			var shows = JSON.parse(this.responseText);
+			var list = document.getElementById("shows");
+
+			while (list.hasChildNodes()) {   
+			    list.removeChild(list.firstChild);
+			}
+			for (var i=0;i<shows.length;i++){
+				var option = document.createElement("option");
+				var show=null;
+				
+				switch(parseInt(shows[i]))
+				{
+				case 1:
+					show="Morning Show";
+					break;
+				case 2:
+					show="Matinee";
+					break;
+				case 3:
+					show="Evening Show";
+					break;
+				case 4:
+					show="Night Show";
+					
+				}
+				var text = document.createTextNode(show);
+				
+				
+				option.appendChild(text);
+				var element = document.getElementById("shows");
+				element.appendChild(option);
+				
+		}
+			
+		}
+
+	};
+	request.open("POST", "getshows?movie="+movie, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.send();
+	
+}
+	
+
+  function getMovies(){
+		var request = createRequest();
+		request.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200) {
+				var movies = JSON.parse(this.responseText);
+				
+				for (var i=0;i<movies.length;i++){
+					var option = document.createElement("option");
+					
+					var text = document.createTextNode(movies[i]);
+					
+					
+					option.appendChild(text);
+					var element = document.getElementById("movies");
+					element.appendChild(option);
+					
+			}
+				
+			}
+
+		};
+		request.open("POST", "getmovienames", true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.send();
+		
+	}
+  </script>
+</head>
+<body onload="getMovies()">
+<div class="header">
+  <h1>BookMyMovie</h1>
+</div>
+ <h2>Book Movies</h2>
+<div class="container">
+<form action="addbooking" method="post">
+<div class="form-group">
+Movies: <select id="movies" name="movies" onchange="getShows()">
+</select>
+</div>
+<div class="form-group">
+Shows: <select id="shows" name="shows">
+</select>
+</div>
+<div class="form-group">
+Show Date: <input type="date" id="showdate" name="showdate">
+</div>
+<div class="form-group">
+Seat Type: <select id="seattype" name="seattype">
+		<option>Platinum</option>
+		<option>Gold</option>
+		<option>Silver</option>
+		</select></div>
+<div class="form-group">		
+Number of Seats:<input type="number" id="noofseats" name="noofseats">
+</div>
+<div class="form-group">
+		<button id="button" name="button" class="btn btn-default">Book ticket</button></div>
+		
+</form>
+</div>
+<div class="footer">
+  <p>Copyright 2018 © salik. All Rights Reserved.
+The content and images used on this site are copyright protected and copyrights vests with the respective owners. The usage of the content and images on this website is intended to promote the works and no endorsement of the artist shall be implied. Unauthorized use is prohibited and punishable by law.</p>
+</div>
+</body>
+</html>
